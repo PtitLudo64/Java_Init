@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entity.Player;
+import object.SuperObject;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -34,6 +35,8 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
     public Player player = new Player(this, keyH);
+    public SuperObject obj[] = new SuperObject[10];
+    public AssetSetter aSetter = new AssetSetter(this);
 
     // Set player's default position
     // int playerX = 100;
@@ -55,6 +58,10 @@ public class GamePanel extends JPanel implements Runnable{
         * @param focusable true if this component can receive the focus, false otherwise
         */
         this.setFocusable(true);
+    }
+
+    public void setupGame() {
+        aSetter.setObject();
     }
 
     public void startGameThread() {
@@ -154,7 +161,18 @@ public class GamePanel extends JPanel implements Runnable{
 
         // g2.setColor(Color.WHITE);
         // g2.fillRect(playerX, playerY, tileSize, tileSize);
+
+        // Tile
         tileM.draw(g2);
+
+        // Object
+        for (int i=0; i<obj.length; i++) {
+            if(obj[i] != null) {
+                obj[i].draw(g2, this);
+            }
+        }
+
+        // Player
         player.draw(g2);
         g2.dispose();
     }
