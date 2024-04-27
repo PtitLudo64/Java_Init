@@ -15,6 +15,6 @@ public class Entity {
 
     // virtual player area for collision detection
     public Rectangle solidArea;
-
+    public int solidAreaDefaultX, solidAreaDefaultY;
     public Boolean collisionOn = false;
 }

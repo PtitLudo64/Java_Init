@@ -14,5 +14,6 @@ public class OBJ_Door extends SuperObject {
             // TODO: handle exception
             e.printStackTrace();
         }
+        collision = true;
     }
 }
