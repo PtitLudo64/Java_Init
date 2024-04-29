@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.Color;
 // import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -19,6 +20,8 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     public int hasKey = 0;
+    int standCounter = 0;
+    Boolean debug = false;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
@@ -117,6 +120,13 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
         }
+        else {
+            standCounter++;
+            if (standCounter > 20) {
+                spriteNum = 1;
+                standCounter = 0;
+            }
+        }
     }
 
     public void pickUpObject(int i) {
@@ -200,5 +210,9 @@ public class Player extends Entity {
                 break;
         }
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        if(debug) {
+            g2.setColor(Color.RED);
+            g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
+        }
     }
 }
