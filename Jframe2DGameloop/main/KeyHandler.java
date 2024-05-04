@@ -3,6 +3,8 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import entity.Player;
+
 public class KeyHandler implements KeyListener{
 
     public boolean upPressed, downPressed, leftPressed, rightPressed;
@@ -22,7 +24,11 @@ public class KeyHandler implements KeyListener{
                 downPressed = true;
                 break;
             case KeyEvent.VK_D:
-                rightPressed = true;
+                if (e.isControlDown()) {
+                    Player.debug = !Player.debug;
+                }
+                else
+                    rightPressed = true;
                 break;
             default:
                 break;

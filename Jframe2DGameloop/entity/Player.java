@@ -21,7 +21,7 @@ public class Player extends Entity {
     public final int screenY;
     public int hasKey = 0;
     int standCounter = 0;
-    Boolean debug = false;
+    public static Boolean debug = false;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
